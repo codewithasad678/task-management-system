@@ -1,0 +1,52 @@
+:root{
+    --primaryColor: #5F36B1;
+    --secondaryColor: #F73A63;
+}
+.primary-bg{
+    background-color: var(--primaryColor) !important;
+    color: white !important;
+}
+.secondary-bg{
+    background-color: var(--secondaryColor) !important;
+    color: white !important;
+}
+.login-image{
+    border-radius: 50%;
+    margin:10px auto 20px;
+    border: 2px solid var(--secondaryColor);
+    box-shadow: 2px 2px 4px  rgba(0,0,0,0.2);
+    width: 100px;
+    height: 100px;
+    display: block;   
+}
+
+.btn-primary{
+    background-color: var(--primaryColor) !important;
+    color: white !important;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px !important;
+    border:  none !important;
+}
+.btn-primary:hover{
+    background-color: var(--secondaryColor) !important;
+    color: white !important;
+    font-weight: 600;
+    font-size: 18px !important;
+    line-height:35px !important;
+    padding: 5px !important;
+    transition: all 0.2s ease;
+}
+
+/* =================================== Navbar ================================= */
+.logo-text{
+    word-spacing: 2px;
+    letter-spacing: 1px;
+}
+.nav-link{
+    color: white !important;
+    background-color: var(--primaryColor) !important;
+}
+.nav-link:hover{
+    color: var(--secondaryColor) !important;
+}
