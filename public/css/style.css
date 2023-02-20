@@ -1,6 +1,16 @@
 :root{
     --primaryColor: #5F36B1;
     --secondaryColor: #F73A63;
+    --thirdColor: #1a1d59;
+}
+a{
+    text-decoration: none !important;
+}
+a:hover{
+    color: var(--secondaryColor) !important;
+}
+.primaryColor{
+    color: var(--primaryColor) !important;
 }
 .primary-bg{
     background-color: var(--primaryColor) !important;
@@ -49,4 +59,15 @@
 }
 .nav-link:hover{
     color: var(--secondaryColor) !important;
+}
+.sidebar-nav ul li{
+    color: white !important;
+    background-color: var(--thirdColor);
+}
+.sidebar-nav ul li:hover{
+    background-color: var(--secondaryColor);
+    color: white !important;
+}
+.sidebar-nav ul li:hover a{
+    color: white !important;
 }

@@ -81,7 +81,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-none d-md-block">Select Election(Event) <i class="fa fa-angle-down"></i></span>
                                 <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
@@ -92,7 +92,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                        </li>
+                        </li> --}}
         
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -112,8 +112,9 @@
         
                                     ?>
                                     <div class="m-l-10">
-                                        <h4 class="m-b-0"><?php // echo $data['username'] ?></h4>
-                                        <p class=" m-b-0"><?php  // echo $data['email'] ?></p>
+                                        {{-- <h4 class="m-b-0"><?php // echo $data['username'] ?></h4>
+                                        <p class=" m-b-0"><?php  // echo $data['email'] ?></p> --}}
+                                        <p class="text-center ms-3"> {{ Auth::user()->name }}</p>
                                     </div>
                                 </div>
                                     <a class="dropdown-item nav-link" href="{{ route('logout') }}"
@@ -122,7 +123,6 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <p>lorem</p>
         
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -144,38 +144,28 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" style="background-color: #1a1d59 !important;">
-                        <!-- User Profile-->
-                        <li>
-                            <!-- User Profile-->
-                            <div class="user-profile d-flex no-block dropdown mt-3">
-                                <div class="user-pic"><img src="assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
-                                <div class="user-content hide-menu ml-2">
-                                    <?php
-                                    // $id =  $_SESSION['admin_login'];
-                                    // $sql = "SELECT * FROM admin WHERE id='{$id}'";
-                                    // $query =  mysql_query($sql);
-                                    // $data =  mysql_fetch_assoc($query);
-                                    ?>
-                                    <a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <h5 class="mb-0 user-name font-medium"><?php// echo $data['username'] ?> <i class="fa fa-angle-down"></i></h5>
-                                        <span class="op-5 user-email"><?php //echo $data['email'] ?></span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
-                                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings mr-1 ml-1"></i> Account Setting</a>
-                                        <a class="dropdown-item" href="/logout"><i class="fa fa-power-off mr-1 ml-1"></i> Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End User Profile-->
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false"><i class="mdi mdi-server"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="users.php" aria-expanded="false"><i class="mdi mdi-user"></i><span class="hide-menu">Users</span></a></li>
-                        <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="add-user.php" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Add Coach</span></a></li> -->
-                        <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="users.php?user_type=1" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Coaches</span></a></li> -->
-                        <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="leagues.php" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Leagues</span></a></li> -->
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="categories.php" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Categories</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="items.php" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Items</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="login.php?logout=true" aria-expanded="false"><i class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a></li>
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/home" aria-expanded="false"><i class="mdi mdi-server"></i><span class="hide-menu">Dashboard</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Admin</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/group" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Groups</span></a></li>
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/category" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Category</span></a></li>
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/team_member" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Team Member</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/projects" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Projects</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/tasks" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Tasks</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/productivity" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Productivity</span></a></li>
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/reports" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Reports</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/setting" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Setting</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('logout')}}" aria-expanded="false"><i class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
