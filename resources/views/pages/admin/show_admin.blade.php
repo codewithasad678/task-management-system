@@ -66,6 +66,19 @@
                         <th>Action</th>
                     </tr>
                    
+                    <tr>
+                        <th>3</th>
+                        <th> Asad2</th>
+                        <th> asad@gmail.com</th>
+                        <th> 03076791417</th>
+                        <th> Abc</th>
+                        <th> Active</th>
+                        <th> Image</th>
+                        <th> 23-2300</th>
+                        <th> 200 R.B Lathianwala</th>
+                        <th>Action</th>
+                    </tr>
+                   
                       
 
 
