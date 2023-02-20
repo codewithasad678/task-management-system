@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminModel;
+use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use LDAP\Result;
 
 class AdminController extends Controller
 {
@@ -13,7 +17,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.show_admin');
+        $data =  AdminModel::all();
+        return view('pages.admin.show_admin',compact('data'));
     }
 
     /**
@@ -33,8 +38,40 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+
+        $request->validate([
+            'fname' => 'required|string',
+            'email' => 'required|email|',
+            'phone' => 'required',
+            'password' => 'required',
+            'cpassword' => 'required|same:password',
+            'group' => 'required'
+        ]);
+        $data = new AdminModel();
+        $data->fname = $request->input('fname');
+        $data->lname = $request->input('lname');
+        $data->email = $request->input('email');
+        $data->phone = $request->input('phone');
+        $data->address = $request->input('address');
+        $data->password = Hash::make($request->input('password'));
+        $data->textpassword = $request->input('password');
+        $data->group = $request->input('group');
+        $data->status = $request->input('status');
+
+        if(!is_null($request->file('image'))){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalName();
+            $id = $request->id + 1;
+            $filename = strtotime(now())."_profile_{$id}_".$ext;
+            if($file->move("upload-data/",$filename)){
+                $data->image = $filename;
+            }
+        }
+        
+        $data->save();
+        $data = AdminModel::all();
+        return view('pages.admin.show_admin',compact('data'));
     }
 
     /**
@@ -45,7 +82,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -79,6 +116,8 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $record = AdminModel::find($id);
+        $record->delete();
+        return redirect()->back(); 
     }
 }

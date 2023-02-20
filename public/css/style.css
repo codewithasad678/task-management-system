@@ -9,6 +9,21 @@ a{
 a:hover{
     color: var(--secondaryColor) !important;
 }
+.td-5{
+    width: 5% !important;
+}
+.td-10{
+    width: 10% !important;
+}
+.td-15{
+    width: 15% !important;
+}
+.td-20{
+    width: 20% !important;
+}
+.td-30{
+    width: 30% !important;
+}
 .primaryColor{
     color: var(--primaryColor) !important;
 }
@@ -71,3 +86,4 @@ a:hover{
 .sidebar-nav ul li:hover a{
     color: white !important;
 }
+

@@ -13,15 +13,15 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-    <link href="assets/extra-libs/c3/c3.min.css" rel="stylesheet">
-    <link href="assets/extra-libs/css-chart/css-chart.css" rel="stylesheet">
-    <link href="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <link href="{{asset('assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/extra-libs/css-chart/css-chart.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="dist/css/style.min.css" rel="stylesheet">
-    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -97,11 +97,11 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('assets/images/users/1.jpg')}}" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow"><span class="bg-primary"></span></span>
                                 <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
-                                    <div class=""><img src="assets/images/users/1.jpg" alt="user" class="img-circle" width="60"></div>
+                                    <div class=""><img src="{{asset('assets/images/users/1.jpg')}}" alt="user" class="img-circle" width="60"></div>
                                     <?php
                                     // $id =  $_SESSION['admin_login'];
                                     // $sql = "SELECT * FROM admin WHERE id='{$id}'";
@@ -184,39 +184,45 @@
 
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{asset('assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
+    <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- apps -->
-    <script src="dist/js/app.min.js"></script>
-    <script src="dist/js/app.init.light-sidebar.js"></script>
-    <script src="dist/js/app-style-switcher.js"></script>
+    <script src="{{asset('dist/js/app.min.js')}}"></script>
+    <script src="{{asset('dist/js/app.init.light-sidebar.js')}}"></script>
+    <script src="{{asset('dist/js/app-style-switcher.js')}}"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="{{asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js')}}"></script>
+    <script src="{{asset('assets/extra-libs/sparkline/sparkline.js')}}"></script>
     <!--Wave Effects -->
-    <script src="dist/js/waves.js"></script>
+    <script src="{{asset('dist/js/waves.js')}}"></script>
     <!--Menu sidebar -->
-    <script src="dist/js/sidebarmenu.js"></script>
+    <script src="{{asset('dist/js/sidebarmenu.js')}}"></script>
     <!--Custom JavaScript -->
-    <script src="dist/js/custom.min.js"></script>
+    <script src="{{asset('dist/js/custom.min.js')}}"></script>
     <!--This page JavaScript -->
     <!--chartis chart-->
-    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="{{asset('assets/libs/chartist/dist/chartist.min.js')}}"></script>
+    <script src="{{asset('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
     <!--c3 charts -->
-    <script src="assets/extra-libs/c3/d3.min.js"></script>
-    <script src="assets/extra-libs/c3/c3.min.js"></script>
+    <script src="{{asset('assets/extra-libs/c3/d3.min.js')}}"></script>
+    <script src="{{asset('assets/extra-libs/c3/c3.min.js')}}"></script>
     <!--chartjs -->
-    <script src="assets/libs/chart.js/dist/Chart.min.js"></script>
-    <script src="assets/libs/gaugeJS/dist/gauge.min.js"></script>
-    <script src="assets/libs/flot/excanvas.min.js"></script>
-    <script src="assets/libs/flot/jquery.flot.js"></script>
-    <script src="assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="dist/js/pages/dashboards/dashboard2.js"></script>
-    <script src="assets/extra-libs/DataTables/datatables.min.js"></script>
-    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
+    <script src="{{asset('assets/libs/chart.js/dist/Chart.min.js')}}"></script>
+    <script src="{{asset('assets/libs/gaugeJS/dist/gauge.min.js')}}"></script>
+    <script src="{{asset('assets/libs/flot/excanvas.min.js')}}"></script>
+    <script src="{{asset('assets/libs/flot/jquery.flot.js')}}"></script>
+    <script src="{{asset('assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip')}}.min.js"></script>
+    <script src="{{asset('assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js')}}"></script>
+    <script src="{{asset('assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js')}}"></script>
+    <script src="{{asset('dist/js/pages/dashboards/dashboard2.js')}}"></script>
+    <script src="{{asset('assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+    <script src="{{asset('dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+    <script>
+        var loadFile = function(event,location) {
+            var output = document.getElementById(location);
+            output.src = URL.createObjectURL(event.target.files[0])
+        };
+      </script>
 </html>
