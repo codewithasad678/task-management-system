@@ -14,17 +14,20 @@
         </div>
     </div>
 </div>
+<div class="row justify-content-end my-1">
+    <div class="col-md-2">
+        <a href="/group/create">
+            Create New 
+        </a>
+    </div>
+</div>
 <div class="row mx-0">
     <div class="card-body">
         <h2 class="primary-bg text-center text-white py-2">Group List</h1>
         <div class="table-responsive">
-
             <table id="zero_config" class="table table-striped table-bordered">
-
                 <thead>
-
                     <tr>
-
                         <th>#</th>
                         <th> Name</th>
                         <th> Status</th>
@@ -33,12 +36,10 @@
                         <th>Action</th>
 
                     </tr>
-
                 </thead>
 
                 <tbody>
                     <tr>
-                       
                         <th>1</th>
                         <th> abc</th>
                         <th> off</th>
@@ -47,7 +48,6 @@
                         <th>Action</th>
                     </tr>
                     <tr>
-                        
                         <th>2</th>
                         <th> xyz</th>
                         <th> on</th>
@@ -55,10 +55,6 @@
                         <th> Date</th>
                         <th>Action</th>
                     </tr>
-                   
-                      
-
-
                 </tbody>
 
             </table>
