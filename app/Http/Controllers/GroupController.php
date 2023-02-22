@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupModel;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -13,7 +14,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('pages.groups.show_group');
+        $data = GroupModel::all();
+        return view('pages.groups.show_group',compact('data'));
     }
 
     /**
@@ -23,7 +25,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.groups.create_group');
     }
 
     /**

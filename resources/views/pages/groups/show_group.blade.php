@@ -15,9 +15,9 @@
     </div>
 </div>
 <div class="row justify-content-end my-1">
-    <div class="col-md-2">
-        <a href="/group/create">
-            Create New 
+    <div class="col-md-2 text-end">
+        <a href="/group/create" class="btn btn-warning text-white">
+            Create <i class="mdi mdi-arrow-right "></i>
         </a>
     </div>
 </div>
@@ -39,22 +39,29 @@
                 </thead>
 
                 <tbody>
+                    @foreach($data as $item)
                     <tr>
-                        <th>1</th>
-                        <th> abc</th>
-                        <th> off</th>
-                        <th> Note</th>
-                        <th> Date</th>
-                        <th>Action</th>
+                        <th>{{$tem->id}}</th>
+                        <th> {{$item->name}}</th>
+                        <th> {{ucfirst($item->status)}}</th>
+                        <th> {{$item->note}}</th>
+                        <th> {{data('d-m-Y',strtotime($item->created_at))}}</th>
+                        <th>
+                            <td class="td-20">
+                                <div class="btn-group">
+                                    <a href="/group/{{$item->id}}/edit" class="btn-sm  px-3 btn-success mx-1">Edit</a>
+                                    <form action="/group/{{$item->id}}" onsubmit="return confirm('Are You sure to delete this record?')" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="action" value="destroy">
+                                        <input type="submit" class="btn btn-danger" value="Delete">
+                                    </form>
+                                </div>
+                            </td>
+                        </th>
                     </tr>
-                    <tr>
-                        <th>2</th>
-                        <th> xyz</th>
-                        <th> on</th>
-                        <th> Note</th>
-                        <th> Date</th>
-                        <th>Action</th>
-                    </tr>
+                    @endforeach
+                    
                 </tbody>
 
             </table>
