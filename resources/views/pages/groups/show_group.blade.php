@@ -14,6 +14,9 @@
         </div>
     </div>
 </div>
+<div class="notify-div">
+    <x:notify-messages />
+</div>
 <div class="row justify-content-end my-1">
     <div class="col-md-2 text-end">
         <a href="/group/create" class="btn btn-warning text-white">
@@ -31,8 +34,8 @@
                         <th>#</th>
                         <th> Name</th>
                         <th> Status</th>
-                        <th> Description</th>
                         <th> Date</th>
+                        <th> Description</th>
                         <th>Action</th>
 
                     </tr>
@@ -41,15 +44,15 @@
                 <tbody>
                     @foreach($data as $item)
                     <tr>
-                        <th>{{$tem->id}}</th>
+                        <th>{{$item->id}}</th>
                         <th> {{$item->name}}</th>
-                        <th> {{ucfirst($item->status)}}</th>
-                        <th> {{$item->note}}</th>
-                        <th> {{data('d-m-Y',strtotime($item->created_at))}}</th>
+                        <th class="text-center"> <span class="rounded text-white p-1 rounded text-center m-auto @if($item->status == 'active') {{'bg-success'}} @else {{'bg-danger'}} @endif"> {{ucfirst($item->status)}}</span> </th>
+                        <th> {{date('d-m-Y',strtotime($item->created_at))}}</th>
+                        <th> {{$item->description}}</th>
                         <th>
                             <td class="td-20">
                                 <div class="btn-group">
-                                    <a href="/group/{{$item->id}}/edit" class="btn-sm  px-3 btn-success mx-1">Edit</a>
+                                    <a href="/group/{{$item->id}}/edit" class="btn-sm pt-2  px-3 btn-success mx-1">Edit</a>
                                     <form action="/group/{{$item->id}}" onsubmit="return confirm('Are You sure to delete this record?')" method="post">
                                         @csrf
                                         @method('DELETE')

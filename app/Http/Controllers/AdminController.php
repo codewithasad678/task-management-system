@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminModel;
+use App\Models\GroupModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use LDAP\Result;
@@ -30,7 +31,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.create_admin');
+        $groups = GroupModel::all();
+        return view('pages.admin.create_admin',compact('groups'));
     }
 
     /**
@@ -73,6 +75,7 @@ class AdminController extends Controller
         
         $data->save();
         $data = AdminModel::all();
+        notify()->success('Good Job! Data Created Successfully!');
         return view('pages.admin.show_admin',compact('data'));
     }
 
@@ -96,7 +99,8 @@ class AdminController extends Controller
     public function edit($id)
     {
         $data = AdminModel::find($id);
-        return view('pages.admin.edit_admin',compact('data'));
+        $groups = GroupModel::all();
+        return view('pages.admin.edit_admin',compact('data','groups'));
     }
 
     /**
@@ -112,7 +116,7 @@ class AdminController extends Controller
             'fname' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'password' => 'required|password',
+            'password' => 'required',
             'cpassword' => 'required|same:password',
             'group' => 'required'
         ]);
@@ -137,7 +141,7 @@ class AdminController extends Controller
         }
         $data->save();
         $data = AdminModel::all();
-        // ::with(['category.product'])->find($data->id);
+        notify()->success('Good Job! Data Updated Successfully!');
         return  redirect('/admin');
 
     }
@@ -156,6 +160,7 @@ class AdminController extends Controller
         if (File::exists(public_path('upload-data/'.$image))) {
             File::delete(public_path('upload-data/'.$image));
         }
+        notify()->success('Good Job! Data Deleted Successfully!');
         return redirect()->back(); 
     }
 }

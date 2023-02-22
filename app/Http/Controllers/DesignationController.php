@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
+use App\Models\DesignationModel;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Error\Notice;
 
-class CategoryController extends Controller
+class DesignationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +15,14 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $data = CategoryModel::all();
-        return view('pages.category.show_category',compact('data'));
+    {   
+        $data = DesignationModel::select('designation.*')
+        ->from('designation')
+        ->join('category', 'category.id', '=', 'designation.category_id');
+        print_r($data);
+        die();
+        // $data->category_id = CategoryModel::select('name')->where('id',$data->category_id);
+        // return view('pages.designation.show_designation',compact('data','catName'));
     }
 
     /**
@@ -25,7 +32,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.category.create_category');
+        $data = CategoryModel::all()->where('status','active');
+        return view('pages.designation.create_designation',compact('data'));
     }
 
     /**
@@ -37,18 +45,19 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' =>'required',
+            'category' =>'required'
         ]);
-        $data = new CategoryModel();
+        $data = new DesignationModel;
         $data->name = $request->input('name');
-        $data->status = $request->input('status');
-        $data->notes = $request->input('notes');
+        $data->category_id = $request->input('category');
+        $data->note = $request->input('note');
         if($data->save()){
-            notify()->success('Good Job! Data saved successfully');
+            notify()->success('Good Job! You have successfully');
         }else{
-            notify()->Error('Error! Something went wrong');
+            Notify()->error('Error! Something went wrong');
         }
-        return redirect('/category');
+        return redirect('/designation');
     }
 
     /**
@@ -70,8 +79,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $data = CategoryModel::find($id);
-        return view('pages.category.edit_category',compact('data'));
+        //
     }
 
     /**
@@ -83,20 +91,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'  => 'required'
-        ]);
-        $data = CategoryModel::find($id);
-        $data->name = $request->input('name');
-        $data->status = $request->input('status');
-        $data->notes = $request->input('notes');
-        if($data->save()){
-            notify()->success('Good Job! You have successfully');
-        }
-        else{
-            notify()->error('Error! Something went wrong');
-        }
-        return redirect('/category');
+        //
     }
 
     /**
@@ -107,13 +102,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = CategoryModel::find($id);
-        if($data->delete()){
-            notify()->success('Good Job! You have successfully');
-            
-        }else{
-            notify()->error('Error! Something went wrong');
-        }
-        return redirect()->back();
+        //
     }
 }

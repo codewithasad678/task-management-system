@@ -92,4 +92,11 @@ input[type=radio]{
 .sidebar-nav ul li:hover a{
     color: white !important;
 }
+.notify-div{
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    width: 50%;
+    z-index: 55;
+}
 

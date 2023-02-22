@@ -36,7 +36,22 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data  = new GroupModel();
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+        $data->name = $request->input('name');
+        $data->status = $request->input('status');
+        $data->description = $request->input('description');
+        $data->permissions = json_encode($request->input('permissions'));
+        if($data->save()){
+            notify()->success('Good  Job ! Data Added Successfully');
+        }else{
+            notify()->error('Something went wrong! Try again');
+        }
+        $data = GroupModel::all();
+        return view('pages.groups.show_group',compact('data'));
     }
 
     /**
@@ -58,7 +73,8 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = GroupModel::find($id);
+        return view('pages.groups.edit_group',compact('data'));
     }
 
     /**
@@ -70,7 +86,23 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $data = GroupModel::find($id);
+        $data->name = $request->input('name');
+        $data->status = $request->input('status');
+        $data->description = $request->input('description');
+        $data->permissions = json_encode($request->input('permissions'));
+       
+        if($data->save()){
+            notify()->success('Good Job! Updated Successfully');
+        }else{
+            notify()->error('Something went wrong');
+        }
+        $data = GroupModel::all();
+        return redirect('/group');
     }
 
     /**
@@ -81,6 +113,16 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = GroupModel::find($id);
+        if(!is_null($data)){
+            $data->delete();
+            notify()->success('Good Job! Data deleted successfully');
+        }
+        else{
+            notify()->success('Something went wrong');
+        }
+        // $data = GroupModel::all();
+        // return view('pages.groups.show_group',compact('data'));
+        return redirect()->back();
     }
 }
