@@ -9,6 +9,12 @@ a{
 a:hover{
     color: var(--secondaryColor) !important;
 }
+input[type=checkbox]{
+    accent-color: var(--primaryColor) ;
+}
+input[type=radio]{
+    accent-color: var(--primaryColor) ;
+}
 .td-5{
     width: 5% !important;
 }
