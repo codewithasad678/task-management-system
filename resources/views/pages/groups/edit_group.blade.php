@@ -22,25 +22,25 @@
     </div>
 </div>
 <div class="row mx-0">
-    <h2 class="primary-bg text-white py-2">Create Group</h1>
-    <form action="/group" method="post" enctype="multipart/form-data">
+    <h2 class="primary-bg text-white py-2">Update Group</h1>
+    <form action="/group/{{$data->id}}" method="post" enctype="multipart/form-data">
         @csrf
-        @method('POST')
+        @method('PUT')
         <div class="row justify-content-evenly my-2 bg-white py-1">
 
             <div class="col-sm-6 p-1 px-2">
                 <div class="form-group ">
                     <label for="name" class="form-label"> Name <span class="text-danger">*</span> </label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" required value="{{old('name')}}">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" required value="{{$data->name}}">
                 </div>
             </div>
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <select name="status" id="statys" value="{{old('status')}}" class="form-control">
+                    <select name="status" id="status"  class="form-control">
                         <option value="">Select</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">InActive</option>
+                        <option value="active" @if($data->status == 'active') {{'selected'}} @endif>Active</option>
+                        <option value="inactive" @if($data->status == 'inactive') {{'selected'}} @endif>InActive</option>
                     </select>
                 </div>
             </div>
@@ -48,14 +48,18 @@
             <div class="col-sm-12 p-1 px-2">
                 <div class="form-group ">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" name="description" id="description" placeholder="description" rows="3" >{{old('Description')}}</textarea>
+                    <textarea class="form-control" name="description" id="description" placeholder="description" rows="3" >{{$data->description}}</textarea>
                 </div>
             </div>
+            @php 
+            $per =  json_decode($data->permissions,true);
+            
+            @endphp
             <div class="col-sm-12">
                 <div class="row justify-content-evenly">
                     <div class="col-3">
                         <h5 class="text-center">Permissions</h5> 
-                        Check All <input type="checkbox" onchange="checkAll(event)" name="permissions[checkall]" >
+                        Check All <input type="checkbox" onchange="checkAll(event)" @if(isset($per['checkall']) && $per['checkall'] == 'on'){{'checked'}} name="permissions[checkall]" @endif>
                     </div>
                     <div class="col-2">
                         <h5 class="text-center">Create</h5>
@@ -92,22 +96,22 @@
                     </div>
         
                 </div><hr>
-                @endforeach 
+                @endforeach
                 {{-- <div class="row justify-content-evenly">
                     <div class="col-3">
                         <h5 class="">Dashboard</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[dashboard][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[dashboard][create]"  @if( isset($per['dashboard']['create']) && $per['dashboard']['create'] == 'on') {{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[dashboard][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[dashboard][show]"  @if($per['dashboard']['show'] == 'on') {{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[dashboard][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[dashboard][update]"  @if($per['dashboard']['update'] == 'on') {{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[dashboard][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[dashboard][delete]"  @if($per['dashboard']['delete'] == 'on') {{'checked'}} @endif></h5>
                     </div>
         
                 </div><hr>
@@ -116,16 +120,16 @@
                         <h5 class="">Admin</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[admin][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[admin][create]" @if($per['admin']['create'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[admin][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[admin][show]" @if($per['admin']['show'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[admin][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[admin][update]" @if($per['admin']['update'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[admin][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[admin][delete]" @if($per['admin']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div><hr>
@@ -134,16 +138,16 @@
                         <h5 class="">Group</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[group][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[group][create]" @if($per['group']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[group][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[group][show]" @if($per['group']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[group][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[group][update]" @if($per['group']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[group][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[group][delete]" @if($per['group']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div><hr>
@@ -153,16 +157,16 @@
                         <h5 class="">Category</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[category][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[category][create]" @if($per['category']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[category][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[category][show]" @if($per['category']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[category][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[category][update]" @if($per['category']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[category][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[category][delete]" @if($per['category']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div> <hr>
@@ -171,16 +175,16 @@
                         <h5 class="">Team Member</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[team_member][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[team_member][create]" @if($per['team_member']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[team_member][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[team_member][show]" @if($per['team_member']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[team_member][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[team_member][update]" @if($per['team_member']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[team_member][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[team_member][delete]" @if($per['team_member']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div> <hr>
@@ -189,16 +193,16 @@
                         <h5 class="">Projects</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[projects][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[projects][create]" @if($per['projects']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[projects][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[projects][show]" @if($per['projects']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[projects][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[projects][update]" @if($per['projects']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[projects][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[projects][delete]" @if($per['projects']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div> <hr>
@@ -207,16 +211,16 @@
                         <h5 class="">Tasks</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[tasks][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[tasks][create]" @if($per['tasks']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[tasks][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[tasks][show]" @if($per['tasks']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[tasks][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[tasks][update]" @if($per['tasks']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[tasks][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[tasks][delete]" @if($per['tasks']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div> <hr>
@@ -225,16 +229,16 @@
                         <h5 class="">Productivity</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[productivity][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[productivity][create]" @if($per['productivity']['create'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[productivity][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[productivity][show]" @if($per['productivity']['show'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[productivity][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[productivity][update]" @if($per['productivity']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[productivity][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[productivity][delete]" @if($per['productivity']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div> <hr>
@@ -243,16 +247,16 @@
                         <h5 class="">Reports</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[reports][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[reports][create]" @if($per['reports']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[reports][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[reports][show]" @if($per['reports']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[reports][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[reports][update]" @if($per['reports']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[reports][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[reports][delete]" @if($per['reports']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div> <hr>
@@ -261,16 +265,16 @@
                         <h5 class="">Settings</h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[setting][create]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[setting][create]" @if($per['setting']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[setting][show]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[setting][show]" @if($per['setting']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[setting][update]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[setting][update]" @if($per['setting']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
                     <div class="col-2">
-                        <h5 class="text-center"><input type="checkbox" name="permissions[setting][delete]"></h5>
+                        <h5 class="text-center"><input type="checkbox" name="permissions[setting][delete]" @if($per['setting']['delete'] == 'on'){{'checked'}} @endif></h5>
                     </div>
         
                 </div>  --}}
@@ -279,7 +283,7 @@
             
             <div class="col-sm-6 p-1 px-2 ">
                 <div class=" d-flex justify-content-center align-items-center">
-                    <div class="w-50 mt-4 py-2"><input type="submit" class="btn-sm btn-primary w-100 m-auto rounded" name="image" id="image" value="Save" ></div>
+                    <div class="w-50 mt-4 py-2"><input type="submit" class="btn-sm btn-primary w-100 m-auto rounded" name="image" id="image" value="Update" ></div>
                 </div>
             </div>
     

@@ -8,7 +8,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Category</li>
+                    <li class="breadcrumb-item active" aria-current="page">Designation</li>
                 </ol>
             </nav>
         </div>
@@ -16,14 +16,14 @@
 </div>
 <div class="row justify-content-start my-1">
     <div class="col-md-2">
-        <a href="/category" class="btn btn-warning text-white">
+        <a href="/designation" class="btn btn-warning text-white">
             <i class="mdi mdi-arrow-left "></i></i> Back
         </a>
     </div>
 </div>
 <div class="row mx-0">
-    <h2 class="primary-bg text-white py-2">Create Category</h1>
-    <form action="/category" method="post" enctype="multipart/form-data">
+    <h2 class="primary-bg text-white py-2">Create Designation</h1>
+    <form action="/designation" method="post" enctype="multipart/form-data">
         @csrf
         @method('post')
         <div class="row justify-content-evenly my-2 bg-white py-1">
@@ -36,19 +36,21 @@
             </div>
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group">
-                    <label for="status">Status</label>
-                    <select name="status" id="statys" class="form-control">
+                    <label for="category">Category <span class="text-danger">*</span></label>
+                    <select name="category" id="category" class="form-control" required>
                         <option value="">Select</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">InActive</option>
+                        @foreach($data as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
+            
     
             <div class="col-sm-12 p-1 px-2">
                 <div class="form-group ">
                     <label for="notes" class="form-label">Notes</label>
-                    <textarea class="form-control" name="notes" id="notes" placeholder="Notes" rows="3">{{old('name')}}</textarea>
+                    <textarea class="form-control ckeditor" name="note" id="notes" placeholder="Notes" rows="3">{{old('name')}}</textarea>
                 </div>
             </div>
             

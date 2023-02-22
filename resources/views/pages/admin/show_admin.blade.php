@@ -15,6 +15,9 @@
             </div>
         </div>
     </div>
+    <div class="notify-div">
+        <x:notify-messages />
+    </div>
     <div class="row justify-content-end my-1">
         <div class="col-md-2 text-end">
             <a href="/admin/create" class="btn btn-warning text-white">
@@ -55,14 +58,14 @@
                             <td width=""> {{$item->fname}} {{$item->lname}}</td>
                             <td class="td-20"> {{$item->email}}</td>
                             <td class="td-20">{{$item->phone}}</td>
-                            <td class="td-10"></td>
-                            <td class="td-10"> {{ucfirst($item->status)}}</td>
+                            <td class="td-10">{{$item->group}}</td>
+                            <td class="td-10 text-center"> <span class="text-white p-1 rounded @if($item->status == 'active') {{'bg-success'}} @else {{'bg-danger'}} @endif">{{ucfirst($item->status)}} </span></td>
                             <td class="td-10"><img src="{{asset('upload-data/'.$item->image)}}" style="width: 150px" alt="Profile image"></td>
                             <td class="td-10">{{$item->created_at}}</td>
                             <td class="td-30"> {{$item->address}}</td>
                             <td class="td-20">
                                 <div class="btn-group">
-                                    <a href="/admin/{{$item->id}}/edit" class="btn-sm  px-3 btn-success mx-1">Edit</a>
+                                    <a href="/admin/{{$item->id}}/edit" class="btn-sm pt-2 px-3 btn-success mx-1">Edit</a>
                                     <form action="/admin/{{$item->id}}" onsubmit="return confirm('Are You sure to delete this record?')" method="post">
                                         @csrf
                                         @method('DELETE')

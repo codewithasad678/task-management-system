@@ -104,8 +104,11 @@
                     <label for="group">Group <span class="text-danger">*</span></label>
                     <select name="group" id="statys" class="form-control" value="{{old('group')}}">
                         <option value="">Select</option>
-                        <option value="1" @if($data->group == '1' ) {{'selected'}} @endif>ABC</option>
-                        <option value="2" @if($data->group == '2' ) {{'selected'}} @endif>XYZ</option>
+                        
+                        @foreach($groups as $group)
+                        
+                            <option value="{{$group->id}}" @if($data->group == $group->id) {{'selected'}} @endif>{{$group->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 @error('group')

@@ -9,7 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     
-
+    @notifyCss
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -152,6 +152,8 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/group" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Groups</span></a></li>
                         
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/category" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Category</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/designation" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Designation</span></a></li>
                         
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/team_member" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Team Member</span></a></li>
 
@@ -179,10 +181,7 @@
         </div>
     </div>
     </div>
-
-</body>
-
-    <!-- All Jquery -->
+ <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
@@ -219,10 +218,23 @@
     <script src="{{asset('dist/js/pages/dashboards/dashboard2.js')}}"></script>
     <script src="{{asset('assets/extra-libs/DataTables/datatables.min.js')}}"></script>
     <script src="{{asset('dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    @notifyJs
     <script>
         var loadFile = function(event,location) {
             var output = document.getElementById(location);
             output.src = URL.createObjectURL(event.target.files[0])
         };
       </script>
+      <script>
+        $(document).ready(function(){
+            $('.ckeditor').ckeditor();    
+        })
+      </script>
+    @yield('script')
+</body>
+
+   
+   
+
 </html>

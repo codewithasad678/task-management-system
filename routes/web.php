@@ -14,6 +14,7 @@ Route::resource('home', HomeController::class);
 Route::resource('admin', AdminController::class);
 Route::resource('group', GroupController::class);
 Route::resource('category', CategoryController::class);
+Route::resource('designation', DesignationController::class);
 Route::resource('team_member', AdminController::class);
 Route::resource('projects', AdminController::class);
 Route::resource('tasks', AdminController::class);

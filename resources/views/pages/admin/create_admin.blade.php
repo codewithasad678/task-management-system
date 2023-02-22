@@ -104,8 +104,9 @@
                     <label for="group">Group <span class="text-danger">*</span></label>
                     <select name="group" id="statys" class="form-control" value="{{old('group')}}">
                         <option value="">Select</option>
-                        <option value="1">ABC</option>
-                        <option value="2">XYZ</option>
+                        @foreach($groups as $group)
+                            <option value="{{$group->id}}">{{$group->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 @error('group')
