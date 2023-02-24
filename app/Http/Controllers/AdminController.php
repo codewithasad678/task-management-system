@@ -20,7 +20,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $data =  AdminModel::all();
+        $data = AdminModel::with('get_group')->get();
+        // dd($data->toArray());
+        // $data = json_decode($data, true);
         return view('pages.admin.show_admin',compact('data'));
     }
 
@@ -50,7 +52,7 @@ class AdminController extends Controller
             'phone' => 'required',
             'password' => 'required',
             'cpassword' => 'required|same:password',
-            'group' => 'required'
+            'group_id' => 'required'
         ]);
         $data = new AdminModel();
         $data->fname = $request->input('fname');
@@ -60,7 +62,7 @@ class AdminController extends Controller
         $data->address = $request->input('address');
         $data->password = Hash::make($request->input('password'));
         $data->textpassword = $request->input('password');
-        $data->group = $request->input('group');
+        $data->group_id = $request->input('group_id');
         $data->status = $request->input('status');
 
         if(!is_null($request->file('image'))){
@@ -74,7 +76,7 @@ class AdminController extends Controller
         }
         
         $data->save();
-        $data = AdminModel::all();
+        $data = AdminModel::with('get_group')->get();
         notify()->success('Good Job! Data Created Successfully!');
         return view('pages.admin.show_admin',compact('data'));
     }
@@ -98,7 +100,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $data = AdminModel::find($id);
+        $data = AdminModel::where('id',$id)->first();
         $groups = GroupModel::all();
         return view('pages.admin.edit_admin',compact('data','groups'));
     }
@@ -118,7 +120,7 @@ class AdminController extends Controller
             'phone' => 'required',
             'password' => 'required',
             'cpassword' => 'required|same:password',
-            'group' => 'required'
+            'group_id' => 'required'
         ]);
         $data = AdminModel::find($id);
         $data->fname = $request->input('fname');
@@ -128,7 +130,7 @@ class AdminController extends Controller
         $data->address = $request->input('address');
         $data->password = Hash::make($request->input('password'));
         $data->textpassword = $request->input('password');
-        $data->group = $request->input('group');
+        $data->group_id = $request->input('group_id');
         $data->status = $request->input('status');
 
         if(!is_null($request->file('image'))){
@@ -140,7 +142,7 @@ class AdminController extends Controller
             }
         }
         $data->save();
-        $data = AdminModel::all();
+        $data = AdminModel::with('get_group')->get();
         notify()->success('Good Job! Data Updated Successfully!');
         return  redirect('/admin');
 

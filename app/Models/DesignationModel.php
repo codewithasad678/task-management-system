@@ -14,4 +14,9 @@ class DesignationModel extends Model
     protected $fillable = [
         'name','category_id','note'
     ];
+
+
+    public function get_category(){
+        return $this->hasMany('App\Models\CategoryModel','id','category_id');
+    }
 }

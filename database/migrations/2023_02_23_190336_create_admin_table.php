@@ -15,16 +15,18 @@ return new class extends Migration
     {
         Schema::create('admin', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('group_id');
             $table->string('fname');
             $table->string('lname');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('email');
+            $table->string('phone');
             $table->string('address');
             $table->string('password');
             $table->string('textpassword');
             $table->string('image');
-            $table->integer('group');
             $table->integer('status');
+            $table->foreign('group_id')
+                 ->references('id')->on('groups')->onDelete('cascade');
             $table->timestamps();
         });
     }

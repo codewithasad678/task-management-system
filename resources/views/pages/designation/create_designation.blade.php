@@ -37,7 +37,7 @@
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group">
                     <label for="category">Category <span class="text-danger">*</span></label>
-                    <select name="category" id="category" class="form-control" required>
+                    <select name="category_id" id="category" class="form-control" required>
                         <option value="">Select</option>
                         @foreach($data as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>

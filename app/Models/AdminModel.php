@@ -14,4 +14,9 @@ class AdminModel extends Model
     protected $fillable = [
         'fname','lname','phone','email','address','status','password','textpassword','group','image'
     ];
+
+
+    public function get_group(){
+        return $this->hasMany('App\Models\GroupModel','id','group_id');
+    }
 }
