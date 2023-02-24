@@ -37,7 +37,7 @@
                         <tr>
 
                             <th class="td-5">Sr.#</th>
-                            <th width="" >Admin Name</th>
+                            <th width="" > Name</th>
                             <th class="td-20"> Email</th>
                             <th class="td-10"> Phone</th>
                             <th class="td-10"> Group</th>
@@ -58,10 +58,14 @@
                             <td width=""> {{$item->fname}} {{$item->lname}}</td>
                             <td class="td-20"> {{$item->email}}</td>
                             <td class="td-20">{{$item->phone}}</td>
-                            <td class="td-10">{{$item->group}}</td>
-                            <td class="td-10 text-center"> <span class="text-white p-1 rounded @if($item->status == 'active') {{'bg-success'}} @else {{'bg-danger'}} @endif">{{ucfirst($item->status)}} </span></td>
+                            <td class="td-10">
+                                @foreach($item->get_group as $citem)
+                                    {{$citem->name}}
+                                @endforeach
+                            </td>
+                            <td class="td-10 text-center"> <span class="text-white p-1 rounded @if($item->status == '1') {{'bg-success'}} @else {{'bg-danger'}} @endif">@if($item->status == 0){{'Inactive'}}@else{{'Active'}}@endif</span></td>
                             <td class="td-10"><img src="{{asset('upload-data/'.$item->image)}}" style="width: 150px" alt="Profile image"></td>
-                            <td class="td-10">{{$item->created_at}}</td>
+                            <td class="td-10">{{date('d-m-Y',strtotime($item->created_at))}}</td>
                             <td class="td-30"> {{$item->address}}</td>
                             <td class="td-20">
                                 <div class="btn-group">

@@ -102,7 +102,7 @@
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group">
                     <label for="group">Group <span class="text-danger">*</span></label>
-                    <select name="group" id="statys" class="form-control" value="{{old('group')}}">
+                    <select name="group_id" id="statys" class="form-control" value="{{old('group_id')}}">
                         <option value="">Select</option>
                         @foreach($groups as $group)
                             <option value="{{$group->id}}">{{$group->name}}</option>
@@ -118,8 +118,8 @@
                     <label for="status">Status</label>
                     <select name="status" id="statys" class="form-control" value="{{old('status')}}">
                         <option value="">Select</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">InActive</option>
+                        <option value="1">Active</option>
+                        <option value="0">InActive</option>
                     </select>
                 </div>
             </div>

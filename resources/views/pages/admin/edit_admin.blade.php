@@ -102,12 +102,12 @@
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group">
                     <label for="group">Group <span class="text-danger">*</span></label>
-                    <select name="group" id="statys" class="form-control" value="{{old('group')}}">
+                    <select name="group_id" id="statys" class="form-control" value="{{old('group_id')}}">
                         <option value="">Select</option>
                         
                         @foreach($groups as $group)
                         
-                            <option value="{{$group->id}}" @if($data->group == $group->id) {{'selected'}} @endif>{{$group->name}}</option>
+                            <option value="{{$group->id}}" @if($data->group_id == $group->id) {{'selected'}} @endif>{{$group->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -120,8 +120,8 @@
                     <label for="status">Status</label>
                     <select name="status" id="statys" class="form-control" value="{{old('status')}}">
                         <option value="">Select</option>
-                        <option value="active" @if($data->status == 'active' ) {{'selected'}}@endif>Active</option>
-                        <option value="inactive" @if($data->status == 'inactive' ) {{'selected'}}@endif>InActive</option>
+                        <option value="1" @if($data->status == 'active' ) {{'selected'}}@endif>Active</option>
+                        <option value="0" @if($data->status == 'inactive' ) {{'selected'}}@endif>InActive</option>
                     </select>
                 </div>
             </div>

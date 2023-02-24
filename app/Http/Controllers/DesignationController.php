@@ -16,13 +16,9 @@ class DesignationController extends Controller
      */
     public function index()
     {   
-        $data = DesignationModel::select('designation.*')
-        ->from('designation')
-        ->join('category', 'category.id', '=', 'designation.category_id');
-        print_r($data);
-        die();
-        // $data->category_id = CategoryModel::select('name')->where('id',$data->category_id);
-        // return view('pages.designation.show_designation',compact('data','catName'));
+        $data = DesignationModel::with('get_category')->get();
+        // dd($data->toArray());
+        return view('pages.designation.show_designation',compact('data',));
     }
 
     /**
@@ -46,11 +42,11 @@ class DesignationController extends Controller
     {
         $request->validate([
             'name' =>'required',
-            'category' =>'required'
+            'category_id' =>'required'
         ]);
         $data = new DesignationModel;
         $data->name = $request->input('name');
-        $data->category_id = $request->input('category');
+        $data->category_id = $request->input('category_id');
         $data->note = $request->input('note');
         if($data->save()){
             notify()->success('Good Job! You have successfully');
@@ -79,7 +75,9 @@ class DesignationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = DesignationModel::find($id);
+        $category = CategoryModel::all();
+        return view('pages.designation.edit_designation',compact('data','category'));
     }
 
     /**
@@ -91,7 +89,21 @@ class DesignationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $data = DesignationModel::find($id);
+        $data->name =  $request->input('name');
+        $data->category_id =  $request->input('category_id');
+        $data->note =  $request->input('note');
+        if($data->save()){
+            notify()->success('Good! You have successfully');
+        }else{
+            notify()->error('Error! Something went wrong');
+        }
+        return redirect('/designation');
     }
 
     /**
@@ -102,6 +114,8 @@ class DesignationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = DesignationModel::find($id);
+        $data->delete();
+        return redirect()->back();
     }
 }

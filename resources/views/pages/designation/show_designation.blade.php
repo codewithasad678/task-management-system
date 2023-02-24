@@ -52,8 +52,12 @@
                     <tr>   
                         <td>{{$item->id}}</td>
                         <td> {{$item->name}}</td>
-                        <td>{{$item->$catName}} </td>
-                        <td> {{$item->note}}</td>
+                        <td>
+                            @foreach($item->get_category as $category)
+                            {{$category->name}}
+                            @endforeach
+                        </td>
+                        <td> {!! $item->note !!}  </td>
                         <td> {{date('d-m-Y',strtotime($item->created_at))}}</td>
                         <td class="td-20">
                             <div class="btn-group">
