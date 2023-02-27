@@ -8,7 +8,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Team</li>
+                    <li class="breadcrumb-item active" aria-current="page">Projects</li>
                 </ol>
             </nav>
         </div>
@@ -16,19 +16,20 @@
 </div>
 <div class="row justify-content-start my-1">
     <div class="col-md-2">
-        <a href="/team" class="btn btn-warning text-white">
+        <a href="/projects" class="btn btn-warning text-white">
             <i class="mdi mdi-arrow-left "></i></i> Back
         </a>
     </div>
 </div>
 <div class="row mx-0">
-    <h2 class="primary-bg text-white py-2">Edit Team</h1>
-    <form action="/team/{{$data->id}}" method="post" enctype="multipart/form-data">
+    <h2 class="primary-bg text-white py-2 text-center">Edit Project</h1>
+    <form action="/projects/{{$data->id}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row justify-content-evenly my-2 bg-white py-1">
 
             <div class="col-sm-6 p-1 px-2">
+                <input type="hidden" name="action" value="store">
                 <div class="form-group ">
                     <label for="name" class="form-label"> Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name" required value="{{$data->name}}">
@@ -37,20 +38,40 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-sm-6 p-1 px-2">
-                <div class="form-group ">
-                    <label for="email" class="form-label"> Email <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" required value="{{$data->email}}">
-                    @error('email')
-                        <span class="text-danger">{{$message}}</span>
-                    @enderror
+            <div class="col-sm-6 p-1 px-2 " >
+                <div class="row justify-content-evenly">
+                    <div class="col-sm-6">
+                        <div class="form-group ">
+                            <label for="start_date" class="form-label"> Start Date <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" name="start_date" id="start_date"  required value="{{$data->start_date}}">
+                            @error('start_date')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group ">
+                            <label for="end_date" class="form-label"> End Date <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" name="end_date" id="end_date"  required value="{{$data->end_date}}">
+                            @error('end_date')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-6 p-1 px-2">
-                <div class="form-group ">
-                    <label for="phone" class="form-label"> Phone <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" required value="{{$data->phone}}">
-                    @error('phone')
+            
+           
+            <div class="col-sm-6 p-1 px-2 ">
+                <div class="form-group">
+                    <label for="team_id">Project Manager  <span class="text-danger">*</span></label>
+                    <select name="admin_id" id="admin_id" class="form-control" required>
+                        <option value="">Select Manager</option>
+                        @foreach($admins as $item)
+                            <option value="{{$item->id}}" @if($data->admin_id == $item->id){{'selected'}} @endif >{{$item->fname}} {{$item->lname}}</option>
+                        @endforeach
+                    </select>
+                    @error('team_id')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
@@ -58,10 +79,10 @@
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group">
                     <label for="category">Category </label>
-                    <select  id="category_id" class="form-control"  onchange="getDesignation(event)">
+                    <select  id="category_id" name="category_id" class="form-control"  >
                         <option value="">Select Category</option>
                         @foreach($categories as $item)
-                            <option value="{{$item->id}}" @if($data->category_id == $item->id) {{'selected'}} @endif >{{$item->name}}</option>
+                            <option value="{{$item->id}}" @if($data->category_id == $item->id){{'selected'}} @endif>{{$item->name}}</option>
                         @endforeach
                     </select>
                    
@@ -69,14 +90,14 @@
             </div>
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group">
-                    <label for="designation_id">Designation <span class="text-danger">*</span></label>
-                    <select name="designation_id" id="designation_id" class="form-control" required>
-                        <option value="">Select Designation</option>
-                        @foreach($designations as $item)
-                            <option value="{{$item->id}}"  @if($data->designation_id == $item->id) {{'selected'}} @endif>{{$item->name}}</option>
+                    <label for="team_id">Team member <span class="text-danger">*</span></label>
+                    <select name="team_id[]" id="team_id" class="form-control" required multiple>
+                        <option value="">Select Members</option>
+                        @foreach($teams as $item)
+                            <option value="{{$item->id}}"  @if($data->team_id == $item->id){{'selected'}} @endif>{{$item->name}}</option>
                         @endforeach
                     </select>
-                    @error('designation_id')
+                    @error('team_id')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
@@ -87,22 +108,24 @@
                     <label for="status">Status </label>
                     <select name="status" id="status" class="form-control" >
                         <option value="">Select Status</option>
-                        <option value="active"  @if($data->status == 'active') {{'selected'}} @endif>Active</option>
-                        <option value="inactive" @if($data->status == 'inactive') {{'selected'}} @endif>Inactive</option>
+                        <option value="pending" @if($data->status == 'pending'){{'selected'}} @endif>Pending</option>
+                        <option value="preparing" @if($data->status == 'preparing'){{'selected'}} @endif>Preparing</option>
+                        <option value="processing" @if($data->status == 'processing'){{'selected'}} @endif>Processing</option>
+                        <option value="completed" @if($data->status == 'completed'){{'selected'}} @endif>Completed</option>
                     </select>
                     @error('status')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
             </div>
-            
-    
-            <div class="col-sm-12 p-1 px-2">
-                <div class="form-group ">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="file" name="image" id="image" class="image" onchange="document.getElementById('image_team').src = window.URL.createObjectURL(this.files[0])" >
+            <div class="col-sm-12">
+                <div class="form-group mb-3">
+                    <label for="note">Note:</label>
+                    <textarea name="note" id="note" class="form-control ckeditor" rows="2">{{$data->note}}</textarea>
                 </div>
             </div>
+            
+    
             
             
             <div class="col-sm-6 p-1 px-2 ">
@@ -110,11 +133,6 @@
                     <div class="w-50 mt-4 py-2"><input type="submit" class="btn-sm btn-primary w-100 m-auto rounded" name="image" id="image" value="Update" ></div>
                 </div>
             </div>
-
-            <div class="col-sm-12 p-1 px-2  ">
-                <div style="width:150px"><img src="{{asset('upload-data/'.$data->image)}}" id="image_team" alt="profile Image" style="width:100%"></div>
-            </div>
-    
         </div>
     </form>
 </div>

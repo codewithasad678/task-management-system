@@ -66,6 +66,7 @@
                         <td class="td-20">
                             <div class="btn-group">
                                 <a href="/team/{{$item->id}}/edit" class="btn-sm pt-2  px-3 btn-success mx-1">Edit</a>
+                                <a href="/team/{{$item->id}}" class="btn-sm pt-2  px-3 btn-info mx-1">Show</a>
                                 
                                 <form action="/team/{{$item->id}}" onsubmit="return confirm('Are You sure to delete this record?')" method="post">
                                     @csrf
