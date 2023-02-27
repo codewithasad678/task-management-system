@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminModel;
-use App\Models\CategoryModel;
 use App\Models\ProjectsModel;
-use App\Models\TeamModel;
+use App\Models\TaskModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-class ProjectsController extends Controller
+
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +15,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $data = ProjectsModel::with('get_category')->with('get_admin')->with('get_team')->get();
-        // $results = DB::table('team')
-        //         ->whereIn('id', $data->team_id)
-        //         ->get();
-        // dd($data->toArray()[0]['team_id']);
-        return view('pages.projects.show_projects',compact('data'));
+        $data = TaskModel::with('get_project')->get();
+
+        return view('pages.tasks.show_task',compact('data'));
     }
 
     /**
@@ -32,10 +27,8 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        $categories = CategoryModel::where('status','active')->get();
-        $teams = TeamModel::where('status','active')->get();
-        $admins = AdminModel::where('status','1')->get();
-        return view('pages.projects.create_project',compact('categories','teams','admins'));
+        $data = ProjectsModel::all();
+        return view('pages.tasks.create_task',compact('data'));
     }
 
     /**
@@ -48,28 +41,24 @@ class ProjectsController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'project_id' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'admin_id' => 'required',
-            'category_id' => 'required',
-            'team_id' => 'required',
         ]);
 
-        $data = new ProjectsModel();
+        $data = new TaskModel();
         $data->name = $request->input('name');
+        $data->project_id = $request->input('project_id');
         $data->start_date = $request->input('start_date');
         $data->end_date = $request->input('end_date');
-        $data->admin_id = $request->input('admin_id');
-        $data->category_id = $request->input('category_id');
-        $data->team_id = json_encode($request->input('team_id'));
         $data->status = $request->input('status');
         $data->note = $request->input('note');
         if($data->save()){
             notify()->success('Good Job! Data saved successfully');
         }else{
-            notify()->success('Error! Something went wrong');
+            notify()->error('Error! Something went wrong');
         }
-        return redirect('/projects');
+        return redirect('/tasks');
     }
 
     /**
@@ -80,9 +69,9 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        $data = ProjectsModel::with('get_category')->with('get_admin')->with('get_team')->where('id', $id)->get();
+        $data = TaskModel::where('id',$id)->with('get_project')->first();
         // dd($data->toArray());
-        return view('pages.projects.show_project_profile',compact('data'));
+        return view('pages.tasks.show_task_profile',compact('data'));
     }
 
     /**
@@ -93,11 +82,9 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        $data = ProjectsModel::find($id);
-        $categories = CategoryModel::where('status','active')->get();
-        $teams = TeamModel::where('status','active')->get();
-        $admins = AdminModel::where('status','1')->get();
-        return view('pages.projects.edit_project',compact('data','categories','teams','admins'));
+        $data = TaskModel::find($id);
+        $projects = ProjectsModel::all();
+        return view('pages.tasks.edit_task',compact('data','projects'));
     }
 
     /**
@@ -111,28 +98,24 @@ class ProjectsController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'project_id' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'admin_id' => 'required',
-            'category_id' => 'required',
-            'team_id' => 'required',
         ]);
 
-        $data = ProjectsModel::find($id);
+        $data = TaskModel::find($id);
         $data->name = $request->input('name');
+        $data->project_id = $request->input('project_id');
         $data->start_date = $request->input('start_date');
         $data->end_date = $request->input('end_date');
-        $data->admin_id = $request->input('admin_id');
-        $data->category_id = $request->input('category_id');
-        $data->team_id = json_encode($request->input('team_id'));
         $data->status = $request->input('status');
         $data->note = $request->input('note');
         if($data->save()){
             notify()->success('Good Job! Data Updated successfully');
         }else{
-            notify()->success('Error! Something went wrong');
+            notify()->error('Error! Something went wrong');
         }
-        return redirect('/projects');
+        return redirect('/tasks');
     }
 
     /**
@@ -143,14 +126,12 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        $data = ProjectsModel::find($id);
-        if($data->delete()){
-            notify()->success('Good Job! Record added successfully');
+        $date = TaskModel::find($id);
+        if($date->delete()){
+            notify()->success('Good Job! Record Deleted successfully');
+        }else{
+            notify()->success('Error! Something went wrong');
         }
-        else{
-            notify()->error('Error! Record deleted successfully');
-        }
-
         return redirect()->back();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminModel;
 use App\Models\CategoryModel;
 use App\Models\DesignationModel;
 use App\Models\GroupModel;
@@ -80,7 +81,9 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = TeamModel::where('id', $id)->with('get_desigantion')->first();
+        // dd($data->toArray());
+        return view('pages.team.show_team_profile',compact('data'));
     }
 
     /**
