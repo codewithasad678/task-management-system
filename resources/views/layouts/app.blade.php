@@ -167,7 +167,8 @@
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/setting" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Setting</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('logout')}}" aria-expanded="false"><i class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('logout')}}" aria-expanded="false" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
