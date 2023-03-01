@@ -21,4 +21,4 @@ Route::resource('projects', ProjectsController::class);
 Route::resource('tasks', TaskController::class);
 Route::resource('productivity', ProductivityController::class);
 Route::resource('reports', AdminController::class);
-Route::resource('setting', AdminController::class);
+Route::resource('setting', SettingsController::class);

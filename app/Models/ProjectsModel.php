@@ -10,7 +10,7 @@ class ProjectsModel extends Model
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-
+  
 
     protected $fillable = [
         'name','start_date','end_date','admin_id','category_id','team_id','status','note'
