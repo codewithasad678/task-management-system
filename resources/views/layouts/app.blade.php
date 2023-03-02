@@ -145,27 +145,27 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" style="background-color: #1a1d59 !important;">
                         
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/home" aria-expanded="false"><i class="mdi mdi-server"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/home" aria-expanded="false"><i class=" mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Admin</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Admin</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/group" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Groups</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/group" aria-expanded="false"><i class="mdi mdi-group"></i><span class="hide-menu">Groups</span></a></li>
                         
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/category" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Category</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/category" aria-expanded="false"><i class="mdi mdi-format-list-bulleted-type"></i><span class="hide-menu">Category</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/designation" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Designation</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/designation" aria-expanded="false"><i class="mdi mdi-worker"></i><span class="hide-menu">Designation</span></a></li>
                         
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/team" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Team Member</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/team" aria-expanded="false"><i class="mdi mdi-teamviewer"></i><span class="hide-menu">Team Member</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/projects" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Projects</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/projects" aria-expanded="false"><i class="mdi mdi-note"></i><span class="hide-menu">Projects</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/tasks" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Tasks</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/tasks" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Tasks</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/productivity" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Productivity</span></a></li>
                         
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/reports" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Reports</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/reports" aria-expanded="false"><i class="mdi mdi-printer"></i><span class="hide-menu">Reports</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/setting" aria-expanded="false"><i class="mdi mdi-airplay"></i><span class="hide-menu">Setting</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/setting" aria-expanded="false"><i class="mdi mdi-account-settings"></i><span class="hide-menu">Setting</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('logout')}}" aria-expanded="false" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"><i class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a></li>

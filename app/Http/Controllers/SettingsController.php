@@ -39,7 +39,7 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -76,7 +76,29 @@ class SettingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = SettingsModel::find($id);
+        $data->name = $request->input('name');
+        $data->email = $request->input('email');
+        $data->phone1 = $request->input('phone1');
+        $data->phone2 = $request->input('phone2');
+        $data->footer_text = $request->input('footer_text');
+
+
+        if(!is_null($request->file('logo'))){
+            $file = $request->file('logo');
+            $ext = $file->getClientOriginalName();
+            $id = $request->id + 1;
+            $filename = strtotime(now())."_profile_{$id}_".$ext;
+            if($file->move("upload-data/",$filename)){
+                $data->logo = $filename;
+            }
+        }
+        if($data->save()){
+            notify()->success('Good Job! Updated Successfully');
+        }else{
+            notify()->success('Error! something went wrong');
+        }
+        return redirect('/setting');
     }
 
     /**

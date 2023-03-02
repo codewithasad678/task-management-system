@@ -60,7 +60,17 @@
 
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group ">
-                    <label for="footer_text" class="form-label"> Phone 1 <span class="text-danger">*</span></label>
+                    <label for="phone1" class="form-label"> Phone 2 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="phone2" id="phone1"  required value="{{$data->phone2}}">
+                    @error('phone1')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-sm-6 p-1 px-2 ">
+                <div class="form-group ">
+                    <label for="footer_text" class="form-label"> Logo<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="footer_text" id="footer_text"  required value="{{$data->footer_text}}">
                     @error('footer_text')
                         <span class="text-danger">{{$message}}</span>
@@ -72,7 +82,7 @@
             <div class="col-sm-6 p-1 px-2 ">
                 <div class="form-group ">
                     <label for="logo" class="form-label"> Logo <span class="text-danger">*</span></label>
-                    <input type="file" class="form-control" name="logo" id="logo"  required value="{{$data->logo}}">
+                    <input type="file" onchange="loadFile(event,'logo_image')" class="form-control" name="logo" id="logo"  required value="{{$data->logo}}">
                     @error('logo')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -88,6 +98,10 @@
                 <div class=" d-flex justify-content-center align-items-center">
                     <div class="w-50 mt-4 py-2"><input type="submit" class="btn-sm btn-primary w-100 m-auto rounded" name="image" id="image" value="Update" ></div>
                 </div>
+            </div>
+
+            <div class="col-sm-6 p-1 px-2 ">
+                <img src="{{asset('upload-data/'.$data->logo)}}" alt="logo" style="100px"  id="logo_image">
             </div>
         </div>
     </form>
