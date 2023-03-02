@@ -18,129 +18,162 @@
     <div class="row">
         <!-- column -->
         
-        <div class="col-sm-12 col-lg-4">
+        <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
             <div class="card card-hover">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="">
-                            <h3>2</h3>
-                            <h2 class="my-2">Admin</h2>
+                            <h4>{{$admin}}</h3>
+                            <h3 class="my-2">Admin</h3>
                         </div>
                     </div>
                     <div  class="my-2 text-end">
-                        <a href="/admin" >Show Info --></a>
+                        <a href="/admin" class="btn btn-primaryD" >Show Details</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- column -->
-        <div class="col-sm-12 col-lg-4">
+        <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
             <div class="card card-hover">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="">
-                            <h3>0</h3>
-                            <h2 class="my-2">Member</h2>
+                            <h4>{{$groups}}</h3>
+                            <h3 class="my-2">Groups</h3>
                         </div>
                     </div>
                     <div  class="my-2 text-end">
-                        <a href="/member" >Show Info --></a>
+                        <a href="/group" class="btn btn-primaryD" >Show Details</a>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- column -->
-        <div class="col-sm-12 col-lg-4">
+        <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
             <div class="card card-hover">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="">
-                            <h3>4</h3>
+                            <h3>{{$category}}</h3>
                             <h2 class="my-2">Category</h2>
                         </div>
                     </div>
                     <div  class="my-2 text-end">
-                        <a href="/category" >Show Info --></a>
+                        <a href="/category" class="btn btn-primaryD">Show Details</a>
                     </div>
                 </div>
             </div>
         </div>
          <!-- column -->
-         <div class="col-sm-12 col-lg-4">
+         <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
             <div class="card card-hover">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="">
-                            <h3>2</h3>
-                            <h2 class="my-2">Designation</h2>
+                            <h4>{{$designation}}</h4>
+                            <h3 class="my-2">Designation</h3>
                         </div>
                     </div>
                     <div  class="my-2 text-end">
-                        <a href="/designation" >Show Info --></a>
+                        <a href="/designation" class="btn btn-primaryD" >Show Details</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- column -->
-         <div class="col-sm-12 col-lg-4">
+        <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
             <div class="card card-hover">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="">
-                            <h3>2</h3>
-                            <h2 class="my-2">Projects</h2>
+                            <h4>{{$member}}</h4>
+                            <h3 class="my-2">Team Member</h3>
                         </div>
                     </div>
                     <div  class="my-2 text-end">
-                        <a href="/projects" >Show Info --></a>
+                        <a href="/member" class="btn btn-primaryD">Show Details </a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- column -->
-         <div class="col-sm-12 col-lg-4">
+         <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
             <div class="card card-hover">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="">
-                            <h3>5</h3>
-                            <h2 class="my-2">Pending Taks</h2>
+                            <h4>{{$projects}}</h4>
+                            <h3 class="my-2">Projects</h3>
                         </div>
                     </div>
                     <div  class="my-2 text-end">
-                        <a href="/tasks" >Show Info --></a>
+                        <a href="/projects" class="btn btn-primaryD" >Show Details</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- column -->
-        <div class="col-sm-12 col-lg-4">
+         <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
             <div class="card card-hover">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="">
-                            <h3>5</h3>
-                            <h2 class="my-2">Complete Taks</h2>
+                            <h4>{{$tasks}}</h3>
+                            <h3 class="my-2">Total Taks</h3>
                         </div>
                     </div>
                     <div  class="my-2 text-end">
-                        <a href="/tasks" >Show Info --></a>
+                        <a href="/tasks" class="btn btn-primaryD" >Show Details</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- column -->
-        <div class="col-sm-12 col-lg-4">
+        <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
             <div class="card card-hover">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="">
-                            <h3>5</h3>
-                            <h2 class="my-2">Productivity</h2>
+                            <h4>{{$pendingtasks}}</h3>
+                            <h3 class="my-2">Pending Taks</h3>
                         </div>
                     </div>
                     <div  class="my-2 text-end">
-                        <a href="/productivity" >Show Info --></a>
+                        <a href="/tasks" class="btn btn-primaryD" >Show Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
+            <div class="card card-hover">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4>{{$completetasks}}</h3>
+                            <h3 class="my-2">Complete Taks</h3>
+                        </div>
+                    </div>
+                    <div  class="my-2 text-end">
+                        <a href="/tasks" class="btn btn-primaryD" >Show Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <div class="col-sm-6 col-md-4 col-md-4 col-lg-3">
+            <div class="card card-hover">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4>{{$ProductivityModel}}</h4>
+                            <h3 class="my-2">Productivity</h3>
+                        </div>
+                    </div>
+                    <div  class="my-2 text-end">
+                        <a href="/productivity" class="btn btn-primaryD" >Show Details</a>
                     </div>
                 </div>
             </div>
